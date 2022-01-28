@@ -26,8 +26,9 @@ jobs:
         run: |
           make install
         # Add environment variables
-        env:
+        env: |
           CI: true
+          XDEBUG_MODE:coverage
       - name: Run linter
         # Run Linter
         run: |
