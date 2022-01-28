@@ -27,7 +27,6 @@ jobs:
         # Add environment variables
         env:
           CI: true
-          XDEBUG_MODE: coverage
       - name: Run linter
         # Run Linter
         run: |
@@ -39,6 +38,7 @@ jobs:
         # Add Code Climate secret key
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_KEY }}
+          XDEBUG_MODE: coverage
         with:
           coverageCommand: make test-coverage
           coverageLocations: ${{github.workplace}}/build/logs/clover.xml:clover
