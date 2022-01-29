@@ -2,6 +2,8 @@
 
 namespace Differ;
 
+use function Differ\Parsers\parseData;
+
 function stringifyValue(mixed $value): string
 {
     if (is_bool($value)) {
@@ -17,8 +19,10 @@ function gendiff(string $filepath1, string $filepath2, string $format = 'stylish
     }
     $content1 = file_get_contents($filepath1);
     $content2 = file_get_contents($filepath2);
-    $data1 = (array)json_decode($content1);
-    $data2 = (array)json_decode($content2);
+    $ext1 = pathinfo($filepath1)['extension'];
+    $ext2 = pathinfo($filepath2)['extension'];
+    $data1 = parseData($content1, $ext1);
+    $data2 = parseData($content2, $ext2);
     $merged = array_merge($data1, $data2);
     $mergedKeys = array_keys($merged);
     sort($mergedKeys);

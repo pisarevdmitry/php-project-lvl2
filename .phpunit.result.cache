@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"Differ\\Tests\\DifferTest::testPlainJson":0.008}}
+{"version":1,"defects":[],"times":{"Differ\\Tests\\DifferTest::testPlainJson":0.013,"Differ\\Tests\\DifferTest::testPlainYaml":0.006}}

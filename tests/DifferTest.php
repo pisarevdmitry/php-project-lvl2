@@ -16,7 +16,12 @@ class DifferTest extends TestCase
   
     public function testPlainJson()
     {
-      $result = gendiff('./fixtures/file1.json', './fixtures/file2.json');
+      $result = gendiff('./fixtures/plain1.json', './fixtures/plain2.json');
+      $this->assertEquals($this->expectedResult,$result);
+    }
+    public function testPlainYaml()
+    {
+      $result = gendiff('./fixtures/plain1.yaml', './fixtures/plain2.yml');
       $this->assertEquals($this->expectedResult,$result);
     }
 }
