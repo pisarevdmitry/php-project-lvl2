@@ -15,6 +15,7 @@ class DifferTest extends TestCase
         $this->expectedResult = file_get_contents('./fixtures/expected.txt');
         $this->expectedComplex = file_get_contents('./fixtures/expected2.txt');
         $this->expectedPlain = file_get_contents('./fixtures/expectedPlain.txt');
+        $this->expectedJson = file_get_contents('./fixtures/expectedJson.txt');
     }
   
     public function testPlainJson()
@@ -36,5 +37,10 @@ class DifferTest extends TestCase
     {
       $result = gendiff('./fixtures/complex1.json', './fixtures/complex2.json', 'plain');
       $this->assertEquals($this->expectedPlain, $result);
-    } 
+    }
+    public function testJson()
+    {
+      $result = gendiff('./fixtures/complex1.json', './fixtures/complex2.json', 'json');
+      $this->assertEquals($this->expectedJson, $result);
+    }
 }
