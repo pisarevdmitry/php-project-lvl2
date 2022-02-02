@@ -13,8 +13,10 @@ function gendiff(string $filepath1, string $filepath2, string $format = 'stylish
     }
     $content1 = file_get_contents($filepath1);
     $content2 = file_get_contents($filepath2);
-    $ext1 = pathinfo($filepath1)['extension'];
-    $ext2 = pathinfo($filepath2)['extension'];
+    $pathInfo1 = pathinfo($filepath1);
+    $pathInfo2 = pathinfo($filepath2);
+    $ext1 = array_key_exists('extension', $pathInfo1) ? $pathInfo1['extension'] : '';
+    $ext2 =  array_key_exists('extension', $pathInfo2) ? $pathInfo2['extension'] : '';
     $data1 = parseData($content1, $ext1);
     $data2 = parseData($content2, $ext2);
     $diff = buildDiff($data1, $data2);

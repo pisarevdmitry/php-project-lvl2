@@ -2,6 +2,8 @@
 
 namespace Differ\Differ\Formatters\Stylish;
 
+use function Functional\sort;
+
 function stringifyValue(mixed $value): string
 {
     if (is_bool($value)) {
@@ -24,13 +26,13 @@ function calcIndent(int $depth, bool $isCompared = false): string
 function formatNotCompared(array $data, int $depth): string
 {
     $keys = array_keys($data);
-    sort($keys);
+    $sorted = sort($keys, fn ($left, $right) => strcmp($left, $right));
     $mapped = array_map(function ($key) use ($data, $depth) {
         $space = calcIndent($depth);
         return is_array($data[$key])
             ? "{$space}{$key}: {\n" . formatNotCompared($data[$key], $depth + 1) . "\n{$space}}"
             : "{$space}{$key}: " . stringifyValue($data[$key]) ;
-    }, $keys);
+    }, $sorted);
     return implode("\n", $mapped);
 }
 
