@@ -43,4 +43,9 @@ class DifferTest extends TestCase
       $result = gendiff('./fixtures/complex1.json', './fixtures/complex2.json', 'json');
       $this->assertEquals($this->expectedJson, $result);
     }
+    public function testYaml()
+    {
+      $result = gendiff('./fixtures/complex1.yaml', './fixtures/complex2.yml');
+      $this->assertEquals($this->expectedComplex, $result);
+    }
 }

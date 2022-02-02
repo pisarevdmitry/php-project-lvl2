@@ -1,10 +1,10 @@
 <?php
 
-namespace Differ\Formatters\Plain;
+namespace Differ\Differ\Formatters\Plain;
 
 function formatValue(mixed $value): string
 {
-    if (is_array($value) || is_object($value)) {
+    if (is_array($value)) {
         return '[complex value]';
     }
     if (is_bool($value)) {
