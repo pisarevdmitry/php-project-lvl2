@@ -14,7 +14,7 @@ function parseYaml(string $data): array
     return Yaml::parse($data);
 }
 
-function parseData(string $data, string $format): array
+function parseData(string|false $data, string $format): array
 {
     switch ($format) {
         case 'json':
