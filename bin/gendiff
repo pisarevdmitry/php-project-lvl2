@@ -32,4 +32,4 @@ $args = Docopt::handle($doc,[
 
 $result = gendiff($args['<firstFile>'], $args['<secondFile>'], $args['--format']);
 
-//print($result);
+print($result);
