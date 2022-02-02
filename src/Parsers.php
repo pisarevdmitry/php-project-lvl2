@@ -4,12 +4,12 @@ namespace Differ\Differ\Parsers;
 
 use Symfony\Component\Yaml\Yaml;
 
-function parseJson(string $data): array
+function parseJson(string|false $data): array
 {
     return json_decode($data, true);
 }
 
-function parseYaml(string $data): array
+function parseYaml(string|false $data): array
 {
     return Yaml::parse($data);
 }
