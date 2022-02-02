@@ -28,7 +28,7 @@ function formatNotCompared(array $data, int $depth): string
     $mapped = array_map(function ($key) use ($data, $depth) {
         $space = calcIndent($depth);
         return is_array($data[$key])
-            ? "{$space}{$key}: {\n" . formatNotCompared((array)$data[$key], $depth + 1) . "\n{$space}}"
+            ? "{$space}{$key}: {\n" . formatNotCompared($data[$key], $depth + 1) . "\n{$space}}"
             : "{$space}{$key}: " . stringifyValue($data[$key]) ;
     }, $keys);
     return implode("\n", $mapped);
@@ -39,7 +39,7 @@ function styleChangedValue(string $key, mixed $value, int $depth, string $symbol
     $indentCompared = calcIndent($depth, true);
     return is_array($value)
         ? "{$indentCompared}{$symbol} {$key}: {\n"
-            . formatNotCompared((array)$value, $depth + 1) . "\n" . calcIndent($depth) . '}'
+            . formatNotCompared($value, $depth + 1) . "\n" . calcIndent($depth) . '}'
         : "{$indentCompared}{$symbol} {$key}: " . stringifyValue($value);
 }
 

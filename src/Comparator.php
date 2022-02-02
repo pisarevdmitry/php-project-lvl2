@@ -2,10 +2,12 @@
 
 namespace Differ\Differ\Comparator;
 
+use function Functional\sort;
+
 function buildDiff(array $data1, array $data2): array
 {
     $mergedKeys = array_unique(array_merge(array_keys($data1), array_keys($data2)));
-    sort($mergedKeys);
+    $sorted = sort($mergedKeys, fn ($left, $right) => strcmp($left, $right));
     $result = array_map(function ($key) use ($data1, $data2) {
         if (!array_key_exists($key, $data1)) {
             return [
@@ -41,6 +43,6 @@ function buildDiff(array $data1, array $data2): array
             'type' => 'unchanged',
             'value' => $data1[$key]
         ];
-    }, $mergedKeys);
+    }, $sorted);
     return $result;
 }
